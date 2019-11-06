@@ -1,10 +1,14 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import { MDBNavbar, Button } from "mdbreact";
 
 function App() {
   return (
     <div className="App">
+      <MDBNavbar color="blue">
+        <Button>boton</Button>
+      </MDBNavbar>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
