@@ -23,9 +23,8 @@ module.exports = class Newton {
   _deltas(xs, ys, it = 0) {
     if (it === 4) return;
     if (ys.length === 1) return [ys];
-    console.log(xs, ys);
     let ds = this._calcularDeltas(xs, ys, it);
-    return [ys, _.flatten(this._deltas(xs, ds, it + 1))]; //TODO ver que onda
+    return _.concat([ys], this._deltas(xs, ds, it + 1));
   }
 
   _calcularDeltas(xs, ys, it) {
@@ -34,7 +33,6 @@ module.exports = class Newton {
       let d = (ys[i + 1] - ys[i]) / (xs[i + 1 + it] - xs[i]);
       ds = [...ds, d];
     }
-    console.log(ds);
     return ds;
   }
 

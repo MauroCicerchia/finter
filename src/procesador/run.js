@@ -1,3 +1,4 @@
+const _ = require("lodash");
 const math = require("mathjs");
 const Lagrange = require("./lagrange");
 const NewtonGregory = require("./newtonGregory");
@@ -20,4 +21,4 @@ const muestra = [
 
 let ng = new NewtonGregory();
 let ds = ng.procesar(muestra);
-console.log("AVERGA", ds);
+console.log(ds.map(_.first), ds.map(_.last));
