@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { MDBNavbar, Button } from "mdbreact";
 import Function from "./components/function";
