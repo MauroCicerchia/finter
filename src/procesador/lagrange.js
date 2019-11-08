@@ -3,7 +3,7 @@ const math = require("mathjs");
 
 module.exports = class Lagrange {
   procesar(puntos) {
-    // _verificarUnicidad(puntos);
+    // _verificarUnicidad(puntos);v
     let xs = _.map(puntos, ({ x }) => x);
     let ys = _.map(puntos, ({ y }) => y);
     let ls = this._basesPolinomicas(xs);

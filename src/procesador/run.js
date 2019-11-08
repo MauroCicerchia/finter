@@ -10,5 +10,9 @@ const muestra = [
 
 let l = new Lagrange().procesar(muestra);
 let f = x => math.parse(l.result).evaluate({ x });
-let xs = math.range(-100, 100).map(x => x / 10);
-module.exports = xs.map(x => ({ x, y: f(x) })).toArray();
+module.exports = {
+  interpolator: math.simplify(l.result).toString(),
+  input: muestra
+};
+// let xs = math.range(-100, 100).map(x => x / 10);
+// module.exports = xs.map(x => ({ x, y: f(x) })).toArray();
