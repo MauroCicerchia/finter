@@ -1,16 +1,23 @@
 import React from "react";
 import "./App.css";
-import { MDBNavbar, Button } from "mdbreact";
+import { MDBNavbar, Button, MDBNavbarBrand } from "mdbreact";
 import Function from "./components/function";
+import PointsContainer from "./components/pointsContainer";
 
 function App() {
   return (
     <div className="App">
       <MDBNavbar color="blue">
-        <Button>boton</Button>
+        <MDBNavbarBrand>
+          <strong className="white-text">Finter</strong>
+        </MDBNavbarBrand>
       </MDBNavbar>
 
-      <Function></Function>
+      <div>
+        <PointsContainer></PointsContainer>
+      </div>
+
+      {/* <Function></Function> */}
 
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
