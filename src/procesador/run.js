@@ -4,10 +4,10 @@ const Lagrange = require("./lagrange");
 const NewtonGregory = require("./newtonGregory");
 
 const muestra = [
-  { x: 1, y: -2 },
-  { x: -3, y: 1 },
-  { x: 5, y: 2 },
-  { x: 7, y: -3 }
+  { x: 1, y: 4 },
+  { x: 2, y: 15 },
+  { x: 3, y: 40 },
+  { x: 4, y: 85 }
 ];
 
 // let l = new Lagrange().procesar(muestra);
@@ -20,5 +20,5 @@ const muestra = [
 // module.exports = xs.map(x => ({ x, y: f(x) })).toArray();
 
 let ng = new NewtonGregory();
-let ds = ng.procesar(muestra);
-console.log(ds.map(_.first), ds.map(_.last));
+let res = ng.procesar(muestra);
+console.log(math.parse(res.prog).evaluate({ x: 4 }));

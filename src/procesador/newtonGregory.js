@@ -16,8 +16,8 @@ module.exports = class Newton {
     let xs = _.map(puntos, ({ x }) => x);
     let ys = _.map(puntos, ({ y }) => y);
     let ds = this._deltas(xs, ys);
-    return ds;
-    // return this._crearPolinomio(xs, ys, ds);
+    //return ds;
+    return this._crearPolinomios(xs, ys, ds);
   }
 
   _deltas(xs, ys, it = 0) {
@@ -36,5 +36,35 @@ module.exports = class Newton {
     return ds;
   }
 
-  _crearPolinomio(xs, ys, ds) {}
+  _crearPolinomios(xs, ys, ds) {
+    return {
+      prog: this._crearProgresivo(xs, ds),
+      reg: this._crearRegresivo(xs, ds)
+    };
+  }
+
+  _crearProgresivo(xs, ds) {
+    return this._calcularTerminos(xs, ds).join(" + ");
+  }
+
+  _crearRegresivo(xs, ds) {
+    let xinv = _.reverse(xs);
+    let dinv = _.map(ds, d => _.reverse(d));
+    return this._crearProgresivo(xinv, dinv);
+  }
+
+  _calcularTerminos(xs, ds) {
+    let coefs = _.map(ds, d => d[0]);
+    let x = [];
+    for (let i = 0; i < ds.length; i++) {
+      x = [...x, this._xs(xs, i)];
+    }
+    return _.zipWith(coefs, x, (c, x) => (x ? `${c} * ${x}` : `${c}`));
+  }
+
+  _xs(xs, i) {
+    return _.take(xs, i)
+      .map(xi => `(x - ${xi})`)
+      .join(" * ");
+  }
 };
