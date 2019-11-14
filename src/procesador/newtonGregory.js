@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const math = require("mathjs");
 
 module.exports = class Newton {
   procesar(puntos) {
@@ -39,7 +38,8 @@ module.exports = class Newton {
   _crearPolinomios(xs, ys, ds) {
     return {
       prog: this._crearProgresivo(xs, ds),
-      reg: this._crearRegresivo(xs, ds)
+      reg: this._crearRegresivo(xs, ds),
+      ds
     };
   }
 

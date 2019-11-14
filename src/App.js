@@ -10,10 +10,14 @@ import {
 // import Function from "./components/function";
 import PointsContainer from "./components/pointsContainer";
 import Options from "./components/options";
+import Result from "./components/result";
+import { lagrange, ng } from "./procesador";
 
 export default class App extends Component {
   state = {
-    points: []
+    points: [],
+    result: null,
+    algorithm: null
   };
 
   render() {
@@ -34,7 +38,12 @@ export default class App extends Component {
             </MDBCol>
             <MDBCol md="6">
               <Options interpolate={this.interpolate}></Options>
-              {/* <Function></Function> */}
+              {this.state.result && (
+                <Result
+                  pol={this.getFinter()}
+                  points={this.state.points}
+                ></Result>
+              )}
             </MDBCol>
           </MDBRow>
         </MDBContainer>
@@ -47,5 +56,41 @@ export default class App extends Component {
       points
     });
     console.log(points);
+  };
+
+  interpolate = algorithm => () => {
+    console.log("alg", algorithm);
+    if (this.state.points.length >= 2) {
+      let result;
+      switch (algorithm) {
+        case 1:
+          result = lagrange.procesar(this.state.points);
+          break;
+        case 2:
+          result = ng.procesar(this.state.points);
+          break;
+        case 3:
+          result = ng.procesar(this.state.points);
+          break;
+        default:
+          throw new Error("Not a valid algorithm");
+      }
+      if (result) {
+        this.setState({ result, algorithm });
+      }
+    }
+  };
+
+  getFinter = () => {
+    switch (this.state.algorithm) {
+      case 1:
+        return this.state.result.result;
+      case 2:
+        return this.state.result.prog;
+      case 3:
+        return this.state.result.reg;
+      default:
+        return "";
+    }
   };
 }
