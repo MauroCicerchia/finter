@@ -1,40 +1,51 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.css";
-import { MDBNavbar, Button, MDBNavbarBrand } from "mdbreact";
-import Function from "./components/function";
+import {
+  MDBNavbar,
+  MDBNavbarBrand,
+  MDBContainer,
+  MDBCol,
+  MDBRow
+} from "mdbreact";
+// import Function from "./components/function";
 import PointsContainer from "./components/pointsContainer";
+import Options from "./components/options";
 
-function App() {
-  return (
-    <div className="App">
-      <MDBNavbar color="blue">
-        <MDBNavbarBrand>
-          <strong className="white-text">Finter</strong>
-        </MDBNavbarBrand>
-      </MDBNavbar>
+export default class App extends Component {
+  state = {
+    points: []
+  };
 
-      <div>
-        <PointsContainer></PointsContainer>
+  render() {
+    return (
+      <div className="App">
+        <MDBNavbar color="blue">
+          <MDBNavbarBrand>
+            <strong className="white-text">Finter</strong>
+          </MDBNavbarBrand>
+        </MDBNavbar>
+
+        <MDBContainer className="mt-5">
+          <MDBRow>
+            <MDBCol md="6">
+              <PointsContainer
+                onPointsChanged={this.updatePoints}
+              ></PointsContainer>
+            </MDBCol>
+            <MDBCol md="6">
+              <Options interpolate={this.interpolate}></Options>
+              {/* <Function></Function> */}
+            </MDBCol>
+          </MDBRow>
+        </MDBContainer>
       </div>
+    );
+  }
 
-      {/* <Function></Function> */}
-
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
-  );
+  updatePoints = points => {
+    this.setState({
+      points
+    });
+    console.log(points);
+  };
 }
-
-export default App;
