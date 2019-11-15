@@ -15,12 +15,10 @@ module.exports = class Newton {
     let xs = _.map(puntos, ({ x }) => x);
     let ys = _.map(puntos, ({ y }) => y);
     let ds = this._deltas(xs, ys);
-    //return ds;
     return this._crearPolinomios(xs, ys, ds);
   }
 
   _deltas(xs, ys, it = 0) {
-    if (it === 4) return;
     if (ys.length === 1) return [ys];
     let ds = this._calcularDeltas(xs, ys, it);
     return _.concat([ys], this._deltas(xs, ds, it + 1));
@@ -36,6 +34,7 @@ module.exports = class Newton {
   }
 
   _crearPolinomios(xs, ys, ds) {
+    console.log(ds);
     return {
       prog: this._crearProgresivo(xs, ds),
       reg: this._crearRegresivo(xs, ds),

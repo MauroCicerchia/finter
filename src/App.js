@@ -40,8 +40,9 @@ export default class App extends Component {
               <Options interpolate={this.interpolate}></Options>
               {this.state.result && (
                 <Result
-                  pol={this.getFinter()}
+                  pol={this.getPol()}
                   points={this.state.points}
+                  steps={this.getSteps()}
                 ></Result>
               )}
             </MDBCol>
@@ -81,7 +82,7 @@ export default class App extends Component {
     }
   };
 
-  getFinter = () => {
+  getPol = () => {
     switch (this.state.algorithm) {
       case 1:
         return this.state.result.result;
@@ -89,6 +90,19 @@ export default class App extends Component {
         return this.state.result.prog;
       case 3:
         return this.state.result.reg;
+      default:
+        return "";
+    }
+  };
+
+  getSteps = () => {
+    switch (this.state.algorithm) {
+      case 1:
+        return { input: this.state.points, ls: this.state.result.ls };
+      case 2:
+        return { input: this.state.points, ds: this.state.result.ds };
+      case 3:
+        return { input: this.state.points, ds: this.state.result.ds };
       default:
         return "";
     }

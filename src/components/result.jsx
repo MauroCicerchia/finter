@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { MDBInput, MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
+import _ from "lodash";
 import * as math from "mathjs";
 import Function from "./function";
 
@@ -40,6 +41,25 @@ export default class Result extends Component {
           </p>
         )}
         <Function pol={this.props.pol} points={this.props.points}></Function>
+        <p className="mt-3">
+          <strong>Entrada</strong>
+        </p>
+        <p>
+          [{_.map(this.props.steps.input, p => `(${p.x}, ${p.y})`).join(", ")}]
+        </p>
+        {this.props.steps.ls && (
+          <p className="mt-3">
+            <strong>Bases polinómicas de Lagrange</strong>
+          </p>
+        )}
+        {this.props.steps.ls && _.map(this.props.steps.ls, l => <p>{l}</p>)}
+        {this.props.steps.ds && (
+          <p className="mt-3">
+            <strong>Deltas de Newton Gregory</strong>
+          </p>
+        )}
+        {this.props.steps.ds &&
+          _.map(this.props.steps.ds, d => <p>[{d.join(", ")}]</p>)}
       </MDBContainer>
     );
   }
