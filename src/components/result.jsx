@@ -60,6 +60,10 @@ export default class Result extends Component {
         )}
         {this.props.steps.ds &&
           _.map(this.props.steps.ds, d => <p>[{d.join(", ")}]</p>)}
+        <p className="mt-3">
+          <strong>Equiespaciados: </strong>
+          {this.equiespaciados(this.props.points) ? "Si" : "No"}
+        </p>
       </MDBContainer>
     );
   }
@@ -70,4 +74,14 @@ export default class Result extends Component {
     this.setState({
       result: math.parse(this.props.pol).evaluate({ x: this.state.value })
     });
+
+  equiespaciados = points => {
+    let xs = _.sortBy(points, p => p.x).map(p => _.parseInt(p.x));
+    let dist = xs[1] - xs[0];
+    for (let i = 1; i < xs.length - 1; i++) {
+      let newDist = xs[i + 1] - xs[i];
+      if (newDist != dist) return false;
+    }
+    return true;
+  };
 }
