@@ -1,5 +1,5 @@
-const _ = require("lodash");
-const math = require("mathjs");
+import _ from "lodash";
+import * as math from "mathjs";
 
 export default class Lagrange {
   procesar(puntos) {

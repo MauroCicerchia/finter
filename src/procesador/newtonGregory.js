@@ -1,6 +1,6 @@
-const _ = require("lodash");
+import _ from "lodash";
 
-module.exports = class Newton {
+export default class Newton {
   procesar(puntos) {
     /*
       x   y   Δ0  Δ1  Δ2  ...
