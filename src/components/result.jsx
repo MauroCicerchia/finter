@@ -13,11 +13,11 @@ export default class Result extends Component {
     return (
       <MDBContainer className="mt-3">
         <p>
-          <strong>Polinomio interpolate</strong>
+          <strong>Polinomio interpolante</strong>
         </p>
         <p>{this.props.pol}</p>
         <p>
-          <strong>Polinomio interpolate simplificado</strong>
+          <strong>Polinomio interpolante simplificado</strong>
         </p>
         <p>{math.simplify(this.props.pol).toString()}</p>
         <MDBRow>

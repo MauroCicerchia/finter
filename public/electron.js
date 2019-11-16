@@ -8,7 +8,7 @@ const isDev = require("electron-is-dev");
 let mainWindow;
 
 function createWindow() {
-  mainWindow = new BrowserWindow({ width: 900, height: 680 });
+  mainWindow = new BrowserWindow({ width: 900, height: 680, icon: path.join(__dirname, "../build/icon.ico") });
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"
